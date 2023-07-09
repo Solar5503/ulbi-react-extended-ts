@@ -1,10 +1,17 @@
+import Layout from 'antd/es/layout'
+import { Content } from 'antd/es/layout/layout'
 import './App.css'
+import Navbar from './components/Layout/Navbar'
+import AppRouter from './router/AppRouter'
 
 function App() {
   return (
-    <>
-      <p>It works + test!</p>
-    </>
+    <Layout>
+      <Navbar />
+      <Content>
+        <AppRouter />
+      </Content>
+    </Layout>
   )
 }
 
