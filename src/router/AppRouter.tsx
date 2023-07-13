@@ -1,12 +1,13 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { RouteNames, privateRoutes, publicRoutes } from '.'
+import { useTypedSelector } from '../hooks/redux'
 
 const AppRouter = () => {
-  const auth = false
+  const { isAuth } = useTypedSelector((state) => state.authReducer)
 
   return (
     <Routes>
-      {auth
+      {isAuth
         ? privateRoutes.map((route) => (
             <Route
               path={route.path}
@@ -24,7 +25,7 @@ const AppRouter = () => {
       <Route
         path="*"
         element={
-          auth ? (
+          isAuth ? (
             <Navigate to={RouteNames.EVENT} />
           ) : (
             <Navigate to={RouteNames.LOGIN} />

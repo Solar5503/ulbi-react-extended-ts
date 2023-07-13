@@ -2,18 +2,20 @@ import { LoginOutlined, LogoutOutlined } from '@ant-design/icons'
 import { Menu, Row } from 'antd'
 import { Header } from 'antd/es/layout/layout'
 import { useNavigate } from 'react-router-dom'
+import { useTypedActions, useTypedSelector } from '../../hooks/redux'
 import { RouteNames } from '../../router'
 
 const Navbar = () => {
   const navigate = useNavigate()
-  const auth = false
+  const { isAuth, user } = useTypedSelector((state) => state.authReducer)
+  const { logout } = useTypedActions()
 
   return (
     <Header>
       <Row justify="end">
-        {auth ? (
+        {isAuth ? (
           <>
-            <div style={{ color: 'white' }}>Solar</div>
+            <div style={{ color: 'white' }}>{user.username}</div>
             <Menu
               theme="dark"
               mode="horizontal"
@@ -22,7 +24,7 @@ const Navbar = () => {
                   key: 'logout',
                   label: 'Logout',
                   icon: <LogoutOutlined />,
-                  onClick: () => console.log('Log out'),
+                  onClick: () => logout(),
                 },
               ]}
               selectable={false}
