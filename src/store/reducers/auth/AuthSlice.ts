@@ -28,8 +28,8 @@ export const AuthSlice = createSlice({
       .addCase(login.fulfilled, (state, action: PayloadAction<IUser>) => {
         state.isLoading = false
         state.error = ''
-        state.isAuth = true
         state.user = action.payload
+        state.isAuth = true
       })
       .addCase(logout.fulfilled, (state) => {
         state.isAuth = false

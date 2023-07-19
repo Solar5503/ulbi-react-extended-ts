@@ -4,7 +4,6 @@ import { useEffect } from 'react'
 import './App.css'
 import Navbar from './components/Layout/Navbar'
 import { useTypedActions } from './hooks/redux'
-import { IUser } from './models/IUser'
 import AppRouter from './router/AppRouter'
 
 function App() {

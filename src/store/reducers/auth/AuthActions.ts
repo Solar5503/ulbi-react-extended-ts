@@ -1,13 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios'
 import { IUser } from '../../../models/IUser'
+import UserService from '../../../services/UserService'
 
 export const login = createAsyncThunk(
   'auth/login',
   async ({ username, password }: IUser, thunkAPI) => {
     try {
-      const response = await axios.get<IUser[]>('./users.json')
-      const mockUser = response.data.find(
+      const users = await UserService.getUsers()
+      const mockUser = users.find(
         (user) => user.username === username && user.password === password
       )
       if (mockUser) {
